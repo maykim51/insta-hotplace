@@ -3,24 +3,28 @@ import LinesEllipsis from 'react-lines-ellipsis';
 
 // 검색결과 박스 (낱개)
 function BoxItem(props) {
+  var { rank, num_of_posts, name} = props.searchList;
+  var desc = props.searchList.detail.venue_name;
+  var img_urls = props.searchList.posts[0].img_urls[0];
+  
   return (
     <li className="box_item">
       <a href="http://#" onClick={props.onClick}>
         <div
           className="box_img"
-          style={{ backgroundImage: `url(${props.searchList.backgroundImage})` }}
+          style={{ backgroundImage: `url(${img_urls})` }}
         >
           <div className="box_img_overlay"></div>
           <div className="box_rank key_color_bg">
-            <span className="box_rank_num">{props.searchList.rank}등</span>
+            <span className="box_rank_num">{rank}등</span>
           </div>
           <div className="box_insta_count">
-            <p className="box_insta_count_txt">{props.searchList.instatCount}</p>
+            <p className="box_insta_count_txt">{num_of_posts}</p>
           </div>
         </div>
         <div className="box_txt">
-          <h2 className="box_title">{props.searchList.name}</h2>
-          <p className="box_desc">{props.searchList.desc}</p>
+          <h2 className="box_title">{name}</h2>
+          <p className="box_desc">{desc}</p>
         </div>
       </a>
     </li>

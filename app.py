@@ -41,18 +41,28 @@ class AreaList(Resource):
 
 
 class Area(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument(
-        "area_name", 
-        required=True,
-        help="Please give area_name."
-    )
-
+    
     def get(self, area_name):
+        #parser
+        parser = reqparse.RequestParser()
+        parser.add_argument(
+            "venue_name_only", 
+            type=bool,
+            default=False
+        )
+        venue_name_only = parser.parse_args()["venue_name_only"]
+
         area = abort_if_area_doesnt_exist(area_name)
-        cursor = db.areas.find({"area_name": area},{"_id":0, "area_name":0})
-        data = dumps(cursor, ensure_ascii=False)[1:-1].replace("$oid","_id")
-        data = json.loads(data)["venues"]
+        if not venue_name_only:
+            cursor = db.areas.find({"area_name": area},{"_id":0, "area_name":0})
+            data = dumps(cursor, ensure_ascii=False)[1:-1].replace("$oid","_id")
+            data = json.loads(data)["venues"]
+        # else return list of venue_names
+        else: 
+            cursor = db.areas.find({"area_name": area},{"_id":0, "area_name":0})
+            data = dumps(cursor, ensure_ascii=False)[1:-1].replace("$oid","_id")
+            data = json.loads(data)["venues"]
+            data = list(data.keys())
         return jsonify({'result':'success', 'venues': data})
 
 

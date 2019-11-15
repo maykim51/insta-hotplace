@@ -1,0 +1,9 @@
+future==0.16.0
+selenium==3.9.0
+tqdm==4.23.4
+pre-commit==1.16.1
+flask
+flask_restful
+pymongo
+bs4
+requests

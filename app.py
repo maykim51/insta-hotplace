@@ -20,7 +20,7 @@ from area_list import area_list
 @app.route('/')
 def home():
     # return {"message": "Hi this is home!"}
-   return render_template('build/index.html')
+   return render_template('index.html')
 
 
 #error_handling
@@ -88,4 +88,4 @@ api.add_resource(Venue, '/venues/<string:area_name>/<string:venue_name>')
 
 
 if __name__ == '__main__':
-   app.run('0.0.0.0',port=3000,debug=True)
+   app.run('0.0.0.0',port=5000,debug=True)

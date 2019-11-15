@@ -4,24 +4,32 @@ import { BoxItem, Loading } from './../components/BoxItems';
 import { GetSearch } from './../services/GetData';
 
 class SearchResult extends Component {
+  _isMounted = false;
+
   // 키워드 검색결과 가져와서 state에 담기
   fetchSearch = async keyword => {
-    this.setState({ fetching: true });
-    try {
-      const searchRequest = await GetSearch(keyword);
-      const searchList = searchRequest.data;
-      this.setState({
-        searchCount: searchList.length,
-        searchList,
-        fetching: false,
-      });
-    } catch (e) {
-      this.setState({
-        fetching: false,
-        hasError: true,
-      });
-    } finally {
-      this.setState({ hasError: false });
+    if (this._ismounted === true) {
+      this.setState({ fetching: true });
+      try {  
+        const searchRequest = await GetSearch(keyword);
+        const searchList = searchRequest.data[0].venues;
+        for (var key in searchList) {
+          console.log("Attributes : " + key + ", value : " + searchRequest[key]);
+          }
+        this.setState({
+          searchCount: searchList.length,
+          searchList,
+          fetching: false,
+        });
+      } catch (e) {
+        console.log(e);
+        this.setState({
+          fetching: false,
+          hasError: true,
+        });
+      } finally {
+        this.setState({ hasError: false });
+      }
     }
   };
   constructor(props) {
@@ -35,13 +43,24 @@ class SearchResult extends Component {
       loadPage: 1,
       indexStart: 0,
       keyword: this.props.keyword,
+      data: null
     };
   }
 
   // render()다음 데이터를 호출한다
   componentDidMount() {
-    this.fetchSearch(this.props.match.params.query);
+    this._ismounted = true;
+    this.fetchSearch(this.props.match.params.query).then((response) => {
+      if(this._ismounted) {
+        this.setState({ data: response })
+        console.log(this.state.data);
+      }
+    })
     window.addEventListener('scroll', this.nextPage);
+  }
+
+  componentWillUnmount() {
+    this._ismounted = false;
   }
 
   // 업데이트 될 때 실행됨
@@ -73,6 +92,7 @@ class SearchResult extends Component {
   };
 
   render() {
+    console.log('render');
     var {
       fetching,
       hasError,

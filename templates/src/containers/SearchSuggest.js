@@ -3,12 +3,12 @@ import { GetSuggestList } from './../services/GetData';
 import { SuggestList, SuggestBox } from './../components/header/SearchSuggest';
 
 class SearchSuggest extends Component {
-  shouldComponentUpdate(newProps) {
-    if (newProps.blind !== 'blind') {
-      return true;
-    }
-    return false;
-  }
+  // shouldComponentUpdate(newProps) {
+  //   if (newProps.blind !== 'blind') {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   fetchSearch = async () => {
     this.setState({ fetching: true });
@@ -36,10 +36,10 @@ class SearchSuggest extends Component {
     var suggestList = this.state.suggestList.map((list, i) => {
       return (
         <SuggestList
-          name={list.name}
+          name={list}
           key={i}
           onClick={e => {
-            this.props.autoComp(e, list.name);
+            this.props.autoComp(e, list);
           }}
         />
       );

@@ -2,46 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33bd3814-d13f-4bdc-a519-c1ad317d228a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.flake8" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/font/JalnanOTF.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/images/caret-left-solid@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/images/caret-right-solid@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/images/chevron-left-solid@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/images/ico_main@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/images/instagram-brands.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/images/instagram-brands@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/images/instagram-brands@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/images/map-marker-alt-solid@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/images/sample_clear.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/images/sample_image.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/images/sample_map.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/images/sample_search.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/images/search-solid@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/asset/images/spinner-solid@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/components/BoxItems.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/components/Footer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/components/header/Logo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/components/header/SearchField.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/components/header/SearchSuggest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/components/header/header.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/containers/Detail.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/containers/Header.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/containers/Search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/containers/SearchResult.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/containers/SearchResultNone.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/containers/SearchSuggest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/pages/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/pages/Intro.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/pages/Main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/serviceWorker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web/src/services/GetData.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,20 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="57" column="37" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../react-flask-instahotplace/app.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="16" selection-start-line="16" selection-end-line="22" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#58#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="105">
+              <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -117,8 +67,8 @@
         <option value="$PROJECT_DIR$/crawler.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/area_list.py" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/../react-flask-instahotplace/app.py" />
+        <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
@@ -133,7 +83,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="159" />
+    <option name="x" value="317" />
     <option name="y" value="23" />
     <option name="width" value="1439" />
     <option name="height" value="877" />
@@ -144,8 +94,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -229,15 +179,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="159" y="23" width="1439" height="877" extended-state="0" />
+    <frame x="317" y="23" width="1439" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20573477" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21146953" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3299363" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3299363" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -267,20 +217,11 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../react-flask-instahotplace/app.py" />
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="57" column="37" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../react-flask-instahotplace/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="16" selection-start-line="16" selection-end-line="22" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="105">
+          <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
         </state>
       </provider>
     </entry>

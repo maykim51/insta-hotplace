@@ -1,0 +1,396 @@
+/* global > header > search field */
+
+.search {
+  position: relative;
+  top: 50%;
+  margin-top: -20px;
+  width: 336px;
+  margin: -22px auto 0 auto;
+  background-color: white;
+  border-radius: 22px;
+}
+
+fieldset {
+  border: 0;
+}
+
+.search_outline {
+  display: block;
+  width: 230px;
+  height: 44px;
+}
+
+.search_sharp,
+.search_fixed_text {
+  width: 28px;
+  height: 28px;
+}
+
+.search_sharp {
+  position: absolute;
+  top: 11px;
+  left: 15px;
+}
+.search_fixed_text {
+  position: absolute;
+  top: 11px;
+  right: 36px;
+  width: 65px;
+}
+
+.search_sharp span {
+  color: black;
+  font-size: 22px;
+}
+
+.search_fixed_text {
+  color: black;
+  font-size: 20px;
+}
+
+.search_input {
+  margin: 11px 12px 0 42px;
+  font-size: 20px;
+  line-height: 20px;
+  outline: none;
+  width: 180px;
+  display: inline-block;
+}
+
+.search_input::placeholder {
+  color: #ddd;
+}
+
+.blind {
+  display: none;
+}
+
+.search_clear_btn {
+  position: absolute;
+  top: 14px;
+  right: 106px;
+  background-color: transparent;
+  padding: 0;
+}
+
+.search_clear_btn_ico {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-image: url('./../../asset/images/sample_clear.png');
+  opacity: 0.2;
+  background-size: 16px;
+}
+
+.search_btn {
+  width: 40px;
+  height: 40px;
+  margin-top: 0;
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  background-color: transparent;
+}
+
+.search_btn_ico {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-image: url('./../../asset/images/search-solid@2x.png');
+  background-size: 20px;
+}
+
+.search_keyword_suggest {
+  background-color: white;
+  width: 318px;
+  z-index: 2;
+  border-top: solid 2px #eee;
+  padding: 0 8px;
+}
+
+.search_keyword_suggest_only {
+  font-family: 'Jalnan';
+  font-weight: 400;
+  display: block;
+  background-color: #fbfbfb;
+  width: 400px;
+  border-top: solid 2px #eee;
+  padding: 0 8px;
+  margin: 40px auto;
+}
+.search_keyword_suggest li {
+  color: #333;
+}
+.search_keyword_suggest li:hover {
+  color: #ff0045;
+}
+
+.search_keyword_subtitle {
+  display: block;
+}
+
+.search_keyword_list {
+  height: 200px;
+  overflow: scroll;
+}
+
+.search_keyword_list li,
+.search_keyword_subtitle {
+  color: #ddd;
+}
+
+.search_keyword_subtitle,
+.search_keyword_item {
+  padding: 12px 8px;
+  border-bottom: solid 2px #eee;
+  font-size: 18px;
+}
+@media (min-width: 500px) and (max-width:1000px) {
+  .search {
+    width: 290px;
+    left: 90px;
+  }
+  .search_outline {
+    width: 100%;
+  }
+  .search_fixed_text {
+    display: none;
+  }
+  .search_input {
+    width: 62%;
+    margin: 11px 12px 0 42px;
+  }
+  .search_clear_btn {
+    right: 17%;
+  }
+  .search_btn {
+    padding: 0;
+    right: 0;
+  }
+}
+
+@media (max-width: 499px) {
+  .search {
+    width: 75%;
+    left: 12%;
+  }
+  .search_outline {
+    width: 100%;
+  }
+  .search_fixed_text {
+    display: none;
+  }
+  .search_input {
+    width: 55%;
+    margin: 7px 12px 0 32px;
+  }
+  .search_clear_btn {
+    right: 20%;
+  }
+  .search_btn {
+    padding: 0;
+    right: 0;
+  }
+}
+/* intro > body > search field */
+  .intro .search {
+    position: relative;
+    left:0;
+    width: 440px;
+    height: 60px;
+    margin: -22px auto 0 auto;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .intro .search_outline {
+    display: block;
+    width: 260px;
+    height: 60px;
+  }
+  
+  .intro .search_sharp,
+  .intro .search_fixed_text {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .intro .search_sharp {
+    position: absolute;
+    top: 14px;
+    left: 22px;
+  }
+  .intro .search_fixed_text {
+    position: absolute;
+    top: 13px;
+    right: 60px;
+    width: 80px;
+  }
+  
+  .intro .search_sharp span {
+    color: black;
+    font-size: 30px;
+  }
+  
+  .intro .search_fixed_text {
+    color: black;
+    font-size: 28px;
+  }
+  
+  .intro .search_input {
+    margin: 12.5px 10px 0 60px;
+    font-size: 28px;
+    height:28px;
+    outline: none;
+    width: 100%;
+    display: inline-block;
+  }
+  
+  .intro .search_input::placeholder {
+    color: #ddd;
+  }
+  
+  .intro .search_clear_btn {
+    position: absolute;
+    top: 22px;
+    right: 20%;
+    background-color: transparent;
+    padding: 0;
+  }
+  
+  .intro .search_btn {
+    width: 60px;
+    height: 60px;
+    margin-top: 0;
+    position: absolute;
+    top: -1px;
+    right: 0px;
+    background-color: transparent;
+  }
+  
+  .intro .search_btn_ico {
+    display: block;
+    width: 28px;
+    height: 28px;
+    background-image: url('./../../asset/images/search-solid@2x.png');
+    background-size: 28px;
+  }
+  
+  .intro .search_keyword_suggest {
+    background-color: white;
+    width: 420px;
+    z-index: 2;
+    border-top: solid 2px #eee;
+    padding: 0 8px;
+  }
+
+@media (max-width: 480px) {
+  .intro .search {
+    width: 90%;
+  }
+
+  .intro .search_input {
+    margin: 12px 10px 0 20%;
+    font-size: 28px;
+    line-height:28px;
+    height: 30px;
+    outline: none;
+    width: 70%;
+    display: inline-block;
+  }
+
+  .intro .search_fixed_text {
+    display: none;
+  }
+
+  .intro .search_clear_btn {
+    right: 20%;
+  }
+
+  .intro .search_btn {
+    right: -10px;
+  }
+
+  .intro .search_keyword_suggest {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* global > header > logo area */
+
+.logo_area {
+  position: absolute;
+  height: 100%;
+  display: block;
+  width: 280px;
+  left: 5%;
+  background-image: url('./../../asset/images/instagram-brands.png');
+  background-position-y: 38px;
+  background-size: 28px;
+  background-repeat: no-repeat;
+}
+
+.logo_area h1,
+.logo_area a {
+  position: absolute;
+  top: 50%;
+  margin-top: 3px;
+  padding: 0 20px;
+  font-size: 30px;
+  line-height: 30px;
+  color: white;
+  width: 140px;
+}
+
+.logo_area_only {
+  position: relative;
+  margin: 0 auto;
+  height: 100%;
+  display: block;
+  width: 160px;
+  background-image: url('./../../asset/images/instagram-brands.png');
+  background-position-y: 18px;
+  background-size: 28px;
+  background-repeat: no-repeat;
+}
+
+.logo_area_only h1,
+.logo_area_only a {
+  position: absolute;
+  top: 17%;
+  margin-top: 3px;
+  padding: 0 20px;
+  font-size: 30px;
+  line-height: 30px;
+  color: white;
+  width: 140px;
+}
+
+@media (max-width: 480px) {
+  .logo_area {
+    position: absolute;
+    left: 5%;
+    background-image: none;
+  }
+
+  .logo_area h1,
+  .logo_area a {
+    padding: 0;
+  }
+  .mb_blind {
+    display: none;
+  }
+}
+
+/* intro > header > logo area */
+
+.intro .logo_area {
+  top:-30%;
+}
+@media (max-width: 480px) {
+  .intro .mb_blind {
+    display: inline-block;
+  }
+}

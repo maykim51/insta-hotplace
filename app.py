@@ -88,4 +88,4 @@ api.add_resource(Venue, '/venues/<string:area_name>/<string:venue_name>')
 
 
 if __name__ == '__main__':
-   app.run('0.0.0.0',port=5000,debug=True)
+   app.run('0.0.0.0',port=3000,debug=True)

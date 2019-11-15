@@ -13,7 +13,6 @@ venv/
 .vscode/
 
 test.py
-build/
 dist/
 
 # Byte-compiled / optimized / DLL files

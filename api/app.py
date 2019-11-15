@@ -60,13 +60,13 @@ class Area(Resource):
             cursor = db.areas.find({"area_name": area},{"_id":0, "area_name":0})
             data = dumps(cursor, ensure_ascii=False)[1:-1].replace("$oid","_id")
             data = json.loads(data)["venues"]
-        # else return list of venue_names
+            return jsonify({'result':'success', 'venues': data})
         else: 
             cursor = db.areas.find({"area_name": area},{"_id":0, "area_name":0})
             data = dumps(cursor, ensure_ascii=False)[1:-1].replace("$oid","_id")
             data = json.loads(data)["venues"]
             data = list(x["name"] for x in data)
-        return jsonify({'result':'success', 'venues': data})
+            return jsonify({'result':'success', 'venues': data})
 
 
 class Venue(Resource):

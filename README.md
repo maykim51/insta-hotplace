@@ -55,10 +55,12 @@ Then run the Flask app:
 python app.py
 ```
 
-## mongodb 설치
-https://devlog.jwgo.kr/2019/02/26/how-to-install-mongodb-on-ubuntu/
+## mongodb export/import
+$ mongoexport -d scc-hotplace -c areas -o areas.json --jsonArray
 
-http://blog.miyu.pe.kr/953
+mongoimport -d scc-hotplace -c areas --file areas.json --jsonArray
+mongoimport -d scc-hotplace -c venues --file venues.json --jsonArray
+
 
 # ubuntu 16.04 mongodb
 sudo systemctl stop mongod

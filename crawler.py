@@ -88,6 +88,19 @@ if __name__ == "__main__":
     args = parser.parse_args()
     override_settings(args)
 
+<<<<<<< HEAD
+=======
+    
+    #### IMPORTANT!!!!!!
+    # drop the collection before running BELOW ONLY WHEN NEEDED.
+    # collection.drop()
+
+
+    # # update_posts_per_area("강남역")
+    # update_posts_per_area("성수")
+    # update_posts_per_area("광화문")
+    update_posts_per_area("홍대")
+>>>>>>> cee4adb50ef2c2ce9edf522f93a84226b44c20c3
 
     collection.drop()
     output(

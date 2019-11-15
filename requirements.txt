@@ -5,3 +5,6 @@ pre-commit==1.16.1
 black==19.3b0
 flask
 flask_restful
+pymongo
+bs4
+requests

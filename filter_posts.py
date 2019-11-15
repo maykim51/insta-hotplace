@@ -1,16 +1,18 @@
 import json
 from invalid_tags import invalid_tags
+from invalid_tags import get_all_invalid_tags
 from venues.manage_venue import search_venue
-from area_list import map_query_to_venue
+from area_list import map_tag_to_area
 
 
 def set_area_name(tag):
-    area_name = map_query_to_venue(tag)
+    area_name = map_tag_to_area(tag)
     if area_name is None: 
         return None
     return area_name
         
 def set_venue_name(area, hashtags):
+    # invalid_tags = get_all_invalid_tags()
     for hashtag in hashtags:
         if hashtag not in invalid_tags:
             if search_venue(area, hashtag):

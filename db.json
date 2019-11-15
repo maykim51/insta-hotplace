@@ -1,7 +1,5 @@
-{"area": [
+{"성수": [
 {
-"_id":{"$oid":"5dce8d8afb7a99765e7aea8c"},
-"area_name":"성수",
 "venues":[
     {"name":"도치피자",
      "rank":1,

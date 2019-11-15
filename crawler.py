@@ -94,9 +94,9 @@ if __name__ == "__main__":
     # collection.drop()
 
 
-    # update_posts_per_area("강남역")
-    update_posts_per_area("성수")
-    update_posts_per_area("광화문")
+    # # update_posts_per_area("강남역")
+    # update_posts_per_area("성수")
+    # update_posts_per_area("광화문")
     update_posts_per_area("홍대")
 
 

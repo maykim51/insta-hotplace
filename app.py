@@ -15,6 +15,7 @@ client = MongoClient('localhost', 27017)
 db = client['scc-hotplace']
 
 from venues.manage_venue import get_venue_detail
+from area_list import area_list
 
 @app.route('/')
 def home():
@@ -30,6 +31,13 @@ def abort_if_area_doesnt_exist(area_name):
         abort(404, message = "Cannot find area with the given query {}.".format(area_name))
     else:
         return area
+
+
+class AreaList(Resource):
+    parser = reqparse.RequestParser()
+    def get(self):
+        # self.area_list = json.loads(self.area_list)
+        return jsonify({"area_list": area_list})
 
 
 class Area(Resource):
@@ -64,6 +72,7 @@ class Venue(Resource):
         return venue, 200
 
 
+api.add_resource(AreaList, '/areas')
 api.add_resource(Area, '/areas/<string:area_name>')
 api.add_resource(Venue, '/venues/<string:area_name>/<string:venue_name>')
 

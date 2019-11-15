@@ -73,8 +73,9 @@ def update_invalid_tags():
 def get_all_invalid_tags():
         res = []
         for doc in db["invalidtags"].find({},{"word": 1}):
-                res.append(doc)
+                res.append(doc['word'])
         return res
 
 if __name__ == "__main__":
-        update_invalid_tags()
+        # update_invalid_tags()
+        print(get_all_invalid_tags())

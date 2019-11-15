@@ -98,7 +98,8 @@ class InsCrawler(Logging):
             return hashtags
 
         browser = self.browser
-        browser.implicitly_wait(3)
+        # browser.implicitly_wait(3)
+        browser.implicitly_wait(6)
         browser.scroll_down()
         browser.scroll_down()
         ele_post = browser.find_one(".v1Nh3 a")

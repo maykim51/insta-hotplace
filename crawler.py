@@ -56,14 +56,14 @@ if __name__ == "__main__":
     args = parser.parse_args()
     override_settings(args)
 
-    # collection.drop()
-    # output(
-    #         get_posts_by_hashtag("서울숲맛집", 5, False), "서울숲맛집"
-    # )
-    # output(
-    #         get_posts_by_hashtag("성수맛집", 5, False), "성수맛집"
-    # )
-    # output(
-    #         get_posts_by_hashtag("성수맛집", 5, False), "성수맛집"
-    # )
-    sort_posts_per_area("성수")
+    collection.drop()
+    output(
+            get_posts_by_hashtag("서울숲맛집", 5, False), "서울숲맛집"
+    )
+    output(
+            get_posts_by_hashtag("성수맛집", 5, False), "성수맛집"
+    )
+    output(
+            get_posts_by_hashtag("성수맛집", 5, False), "성수맛집"
+    )
+    # sort_posts_per_area("성수")

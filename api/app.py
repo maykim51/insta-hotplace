@@ -13,6 +13,13 @@ from functools import wraps
 app = Flask(__name__)
 api = Api(app)
 
+from flask_cors import CORS
+
+cors = CORS(app, resources={
+  r"/*": {"origin": "*"}
+})
+
+
 from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
 db = client['scc-hotplace']

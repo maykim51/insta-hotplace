@@ -79,13 +79,16 @@ class InsCrawler(Logging):
         @retry()
         def check_next_post(cur_key):
             ele_a_datetime = browser.find_one(".eo2As .c-Yi7")
-
+            print("check1")
             # It takes time to load the post for some users with slow network
             if ele_a_datetime is None:
+                print("check1.5")
                 raise RetryException()
-
+            print("check2")
             next_key = ele_a_datetime.get_attribute("href")
+            print("check3")
             if cur_key == next_key:
+                print("check3.5")
                 raise RetryException()
         
         def retrieve_hashtags(dict_post):
@@ -98,8 +101,9 @@ class InsCrawler(Logging):
             return hashtags
 
         browser = self.browser
-        # browser.implicitly_wait(3)
-        browser.implicitly_wait(6)
+        browser.implicitly_wait(3)
+        # browser.implicitly_wait(6)
+        # browser.implicitly_wait(12)
         browser.scroll_down()
         browser.scroll_down()
         ele_post = browser.find_one(".v1Nh3 a")
@@ -116,31 +120,47 @@ class InsCrawler(Logging):
 
             # Fetching post detail
             try:
+                print("0")
                 check_next_post(cur_key)
-
+                print("00")
                 # Fetching datetime and url as key
                 ele_a_datetime = browser.find_one(".eo2As .c-Yi7")
+                print("000")
                 cur_key = ele_a_datetime.get_attribute("href")
+                print("0000")
                 dict_post["key"] = cur_key
+                print("00000")
                 fetch_datetime(browser, dict_post)
+                print("000000")
                 fetch_imgs(browser, dict_post)
-
-                ele_img = browser.find_one(".KL4Bh img", ele_post)
-                if "food" not in ele_img.get_attribute("alt"):
-                    continue
-
+                try:
+                    ele_img = browser.find_one(".KL4Bh img", ele_post)
+                    print("2")
+                    dict_post["img_caption"] = ele_img.get_attribute("alt")
+                    print("fetched img_caption.")
+                except:
+                    dict_post["img_caption"] = ""
+                    print("did not fetch img_caption.")
+                # caption = str(ele_img.get_attribute("alt"))
+                # print("0")
+                # if caption is "":
+                #     print("1")
+                #     continue
+                # if "food" not in caption and caption is not "":
+                #     print("2")
+                #     continue
+                # print("3")
                 fetch_caption(browser, dict_post)
                 fetch_hashtags(browser, dict_post)
-
                 try:
                     dict_post["hashtags"] = retrieve_hashtags(dict_post)
                 except:
-                    dict_post["hashtags"] = []
-                try: 
-                    del dict_post["caption"]
-                except:
-                    dict_post = dict_post
 
+                    dict_post["hashtags"] = []
+                # try: 
+                #     del dict_post["caption"]
+                # except:
+                #     dict_post = dict_post
             except RetryException:
                 sys.stderr.write(
                     "\x1b[1;31m"
@@ -160,17 +180,20 @@ class InsCrawler(Logging):
                     + "\n"
                 )
                 traceback.print_exc()
-
+            print("!!")
             self.log(json.dumps(dict_post, ensure_ascii=False))
             dict_posts[browser.current_url] = dict_post
-
+            print("!!!!")
             
 
             pbar.update(1)
+            print("!!!!!!!")
             left_arrow = browser.find_one(".HBoOv")
+            print("!!!!!!!!!!!!!!")
             if left_arrow:
+                print("!!!!!!!!!!!!!!****")
                 left_arrow.click()
-
+            print("______________________________")
         pbar.close()
         posts = list(dict_posts.values())
         if posts:

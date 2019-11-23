@@ -110,12 +110,14 @@ if __name__ == "__main__":
 
     #### Update 완료 - as of 191116 - 00:59
     # update_posts_per_area("강남역")
-    # update_posts_per_area("성수")
     # update_posts_per_area("광화문")
     # # update_posts_per_area("홍대")
     # update_posts_per_area("압구정")
     # update_posts_per_area("청담동")
     # update_posts_per_area("경리단길")
+
+     #### Update 완료 - as of 191122 - 18:06
+    update_posts_per_area("성수")
 
 
     # output(

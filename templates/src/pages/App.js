@@ -12,14 +12,12 @@ class App extends Component {
     };
   }
 
-  // 검색창에 입력한 값을 표시
+  // Query Input & Delete
   queryHandle = e => {this.setState({ query: e.target.value });};
-
-  // 검색창에 입력한 값 지우기
   queryClearHandle = () => {this.setState({ query: '' });};
 
-  // 키워드 자동완성 
-  onClickSgt = keyword => {this.setState({ query: keyword });};
+  // Autocomplete by keyword suggestion
+  pushQueryToInput = keyword => {this.setState({ query: keyword });};
 
   render() {
     return (
@@ -30,7 +28,7 @@ class App extends Component {
                                           query={this.state.query}
                                           onChange={this.queryHandle}
                                           inputClear={this.queryClearHandle}
-                                          onClickSgt={this.onClickSgt}
+                                          pushQueryToInput={this.pushQueryToInput}
                                         />
             )}
           />
@@ -39,7 +37,7 @@ class App extends Component {
                                           query={this.state.query}
                                           onChange={this.queryHandle}
                                           inputClear={this.queryClearHandle}
-                                          onClickSgt={this.onClickSgt}
+                                          pushQueryToInput={this.pushQueryToInput}
                                         />
             )}
           />

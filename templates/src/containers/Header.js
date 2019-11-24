@@ -2,17 +2,17 @@ import React from 'react';
 import Search from './Search';
 import Logo from './../components/header/Logo';
 
-function Header(props) {
+function Header({ blind, query, onChange, inputClear, pushQueryToInput }) {
   return (
     <div className="header_container fullwidth key_color_bg">
       <header className="header">
         <Logo/>
         <Search
-          blind={props.blind}
-          query={props.query}
-          onChange={props.onChange}
-          inputClear={props.inputClear}
-          onClickSgt={props.onClickSgt}
+          blind={blind}
+          query={query}
+          onChange={onChange}
+          inputClear={inputClear}
+          pushQueryToInput={pushQueryToInput}
         />
       </header>
     </div>

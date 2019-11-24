@@ -1,18 +1,13 @@
 import React from 'react';
 import LinesEllipsis from 'react-lines-ellipsis';
 
-// 검색결과 박스 (낱개)
-function BoxItem(props) {
-  var { rank, num_of_posts, name} = props.searchList;
-  var desc = props.searchList.detail.venue_name;
-  var img_urls = props.searchList.posts[0].img_urls[0];
-  
+function BoxItem({ onClick, img_urls, rank, num_of_posts, name, desc, onError }) {
   return (
     <li className="box_item">
-      <a href="http://#" onClick={props.onClick}>
+      <a href="http://#" onClick={onClick}>
         <div
           className="box_img"
-          style={{ backgroundImage: `url(${img_urls})` }}
+          style={{ backgroundImage: `${img_urls}, url(https://images.unsplash.com/photo-1558470570-c9a5a5ade867?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80)` }}
         >
           <div className="box_img_overlay"></div>
           <div className="box_rank key_color_bg">
@@ -31,48 +26,54 @@ function BoxItem(props) {
   );
 }
 
-function RelatedBoxItem(props) {
+function RelatedBoxItem({ onClick, img_urls, rank, name }) {
   return (
     <li className="related_box_item">
-      <a href="/#" onClick={props.onClick}>
+      <a href="/#" onClick={onClick}>
         <div
           className="related_box_img"
-          style={{ backgroundImage: `url(${props.backgroundImage})` }}
+          style={{ backgroundImage: `url(${img_urls})` }}
         >
           <div className="related_box_rank">
-            <span className="related_box_rank_num">{props.rank}</span>
+            <span className="related_box_rank_num">{rank}</span>
           </div>
         </div>
         <div className="related_box_txt">
-          <h3 className="related_box_title key_color"><LinesEllipsis text={props.name} maxLine='1' ellipsis='...' trimRight basedOn='letters' /></h3>
+          <h3 className="related_box_title key_color">
+            <LinesEllipsis
+              text={name}
+              maxLine="1"
+              ellipsis="..."
+              trimRight
+              basedOn="letters"
+            />
+          </h3>
         </div>
       </a>
     </li>
   );
 }
 
-function InstaBoxItem(props) {
+function InstaBoxItem({ link, img_urls, tags }) {
   return (
     <li className="box_item insta_box_item">
-      <a href={props.link}>
+      <a href={link} target="_insta">
         <div
           className="insta_box_img"
-          style={{ backgroundImage: `url(${props.backgroundImage})` }}
+          style={{ backgroundImage: `${img_urls}, url(https://images.unsplash.com/photo-1558470570-c9a5a5ade867?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80)` }}
         ></div>
         <div className="insta_box_txt">
-          <p className="insta_box_tags">{props.tags}</p>
+          <p className="insta_box_tags">{tags}</p>
         </div>
       </a>
     </li>
   );
 }
 
-function Loading(props) {
+function Loading({ blind }) {
   return (
-    <div className={'loading '+props.blind} onClick={props.onClick}>
+    <div className={'loading ' + blind}>
       <span className="loading_ico" />
-      <br />
-      <span>다음 페이지를 불러오고 있습니다.</span>
     </div>
   );
 }

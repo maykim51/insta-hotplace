@@ -1,7 +1,7 @@
 import React from 'react';
 import './header.css';
 
-function Logo(props) {
+function Logo() {
   return (
     <div className='logo_area'>
           <h1>

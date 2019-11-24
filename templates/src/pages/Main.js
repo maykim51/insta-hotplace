@@ -5,26 +5,19 @@ import SearchResultNone from './../containers/SearchResultNone';
 import Detail from './../containers/Detail';
 import { Route, BrowserRouter as Router} from 'react-router-dom';
 
-function Main(props) {
+function Main({ query, onChange, inputClear, pushQueryToInput}) {
   return (
     <Router>
       <Header
-        query={props.query}
-        onChange={props.onChange}
-        inputClear={props.inputClear}
-        onClickSgt={props.onClickSgt}
+        query={query}
+        onChange={onChange}
+        inputClear={inputClear}
+        pushQueryToInput={pushQueryToInput}
       />
-      <Route exact path="/search/:query" render={() => (
-                                          <SearchResult
-                                              keyword={props.query}/>
-        )}
+      <Route exact path="/search/:query" render={() => ( <SearchResult/> )}
       />
-      <Route exact path="/sorry" render={() => (
-                                          <SearchResultNone
-                                              query={props.query}
-                                              onChange={props.onChange}
-                                              inputClear={props.inputClear}
-                                              onClickSgt={props.onClickSgt}/>)} />
+      <Route exact path="/sorry" render={() => ( <SearchResultNone
+                                                     pushQueryToInput={pushQueryToInput}/>)} />
       <Route exact path="/search/:query/:name" component={Detail} />
     </Router>
   );

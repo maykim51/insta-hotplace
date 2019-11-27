@@ -117,7 +117,11 @@ if __name__ == "__main__":
     # update_posts_per_area("경리단길")
 
      #### Update 완료 - as of 191122 - 18:06
-    update_posts_per_area("성수")
+    # update_posts_per_area("성수")
+
+    #### Update 완료 - as of 191122 - 18:06
+    update_posts_per_area("가로수길")
+
 
 
     # output(

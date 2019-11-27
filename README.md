@@ -3,6 +3,7 @@
 1. Make sure you have Chrome browser installed.  
 2. Download chromedriver and put it into bin folder: ./inscrawler/bin/chromedriver  
 3. Install Selenium: pip install -r requirements.txt  
+4. pip install --upgrade google-cloud-vision
 ```
 cp inscrawler/secret.py.dist inscrawler/secret.py
 ```

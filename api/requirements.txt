@@ -8,3 +8,6 @@ pymongo
 bs4
 requests
 flask_cors
+google-cloud-vision
+google-cloud
+google-cloud-storage

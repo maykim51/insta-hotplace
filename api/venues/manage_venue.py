@@ -5,8 +5,9 @@ client = MongoClient('localhost', 27017)
 db = client['scc-hotplace']
 collection = db['venuelist']
 
-import requests
-from bs4 import BeautifulSoup
+from selenium import webdriver
+import time
+import os
 
 from venues.address_map import get_area_from_address
 
@@ -85,6 +86,7 @@ def search_venue(area_name, venue_name):
             print(doc)
             return doc
 
+
 def read_venue_list(file, area):   
     with open(file, 'r',  encoding="utf8") as f:
         data = json.loads(f.read())
@@ -97,20 +99,46 @@ def read_venue_list(file, area):
 
 def get_venue_detail(area_name, venue_name):
 
-    def crawl_naver(data):
-        ###FIXIT
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
-        url = "https://m.map.naver.com/search2/search.nhn?query="+area_name+" "+venue_name+"&sm=hty&style=v4#/list"
-        bs_data = requests.get(url, headers=headers)
+    def get_naver_info(data):
+        
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
 
-        soup = BeautifulSoup(bs_data.text, 'html.parser')
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        driver = webdriver.Chrome(
+            # executable_path="%s/bin/chromedriver/chromedriver" % dir_path,
+            executable_path="%s/chromedriver.exe" % dir_path, chrome_options = options)
 
-        # uls = soup.find('ul', {'class' : 'search_list _items'})
-        # uls = soup.select("#ct > div.search_listview._content._ctList > ul > li")
-        # print(uls)
+        driver.get("https://m.map.naver.com/search2/search.nhn?query="+data["area_name"]+" "+data["venue_name"]+"&sm=hty&style=v5#/list")
 
-        ### FIXIT
-        data["url_naver_map"] = url
+
+        div_elems = driver.find_elements_by_xpath("//*[@id=\"ct\"]/div[2]/ul/li/div[1]/a[2]")
+        if len(div_elems) < 1:
+            return -1
+        else: 
+            div_elems[0].click()
+
+        time.sleep(3)
+        naver_url = driver.current_url
+        naver_map_url = naver_url.replace("home", "location?subtab=location")
+        # print(driver.current_url)
+        naver_description=""
+
+        try:
+            naver_description = driver.find_element_by_class_name("wbjO0CnRyw").text
+            # print(naver_description.text)
+        except:
+            try:
+                naver_description = driver.find_element_by_class_name("WoYOwsMl8Q").text
+                # print(naver_description.text)
+            except:
+                naver_description = ""
+
+        # return naver_url, naver_description, naver_map_url
+
+        data["description"] = naver_description
+        data["url_naver_map"] = naver_url
+        data["url_naver_map_direction"] = naver_map_url
 
         return data
         
@@ -121,10 +149,10 @@ def get_venue_detail(area_name, venue_name):
         data = {
             "venue_name": venue_name,
             "area_name": area_name,
-            "description": "식당에 대한 설명",
+            "description": "식당에 대한 설명을 입력해주세요.",
             "url_naver_map": ""
             }
-        crawl_naver(data)
+        get_naver_info(data)
         db["venues"].insert_one(data)
         return get_venue_detail(area_name, venue_name)
     else: 
@@ -133,8 +161,8 @@ def get_venue_detail(area_name, venue_name):
 
 
 
-# if __name__ == "__main__":
-    ### updated lists
+if __name__ == "__main__":
+    ## updated lists
     # update_venue_list("gangnamgu.json", "강남역")
     # update_venue_list("jongrogu.json", "광화문")
     # update_venue_list("mapogu.json", "홍대")

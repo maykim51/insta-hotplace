@@ -17,7 +17,7 @@ collection = db['posts']
 
 from collections import OrderedDict
 from bson.objectid import ObjectId
-from area_list import get_tags_per_area
+from area_list import get_tags_per_area, area_list
 
 from venues.manage_venue import get_venue_detail
 
@@ -89,11 +89,19 @@ def update_posts_per_area(area_name):
     
     for tag in tag_list:
         print("start crawling for tag {}".format(tag))
-        output(get_posts_by_hashtag(tag, 15, False), tag)
+        output(get_posts_by_hashtag(tag, 12, False), tag)
     
     sort_posts_per_area(area_name)
     print("Update completed for area {}!".format(area_name))
     return
+
+
+def update_all_area():
+    #drop collections posts, and area before running it.
+    for area in area_list:
+        # TEMPORARY
+        if area is not "가로수길":
+            update_posts_per_area(area)
 
 
 if __name__ == "__main__":
@@ -119,8 +127,8 @@ if __name__ == "__main__":
      #### Update 완료 - as of 191122 - 18:06
     # update_posts_per_area("성수")
 
-    #### Update 완료 - as of 191122 - 18:06
-    update_posts_per_area("가로수길")
+    #### Update 완료 - as of 191128 - 16:23
+    # update_posts_per_area("성수")
 
 
 
@@ -128,3 +136,7 @@ if __name__ == "__main__":
     #         get_posts_by_hashtag("성수맛집", 5, False), "성수맛집"
     # )
 
+
+    #drop collections posts, and area before running it.!!!!!!!!!!!!!!
+    ### run on 2019/11/28 20:28
+    update_all_area()

@@ -11,3 +11,4 @@ flask_cors
 google-cloud-vision
 google-cloud
 google-cloud-storage
+pillow

@@ -76,6 +76,11 @@ exit
 // 참고: 스탑
 sudo service mongod stop
 
+//delete document
+show databases
+use scc-hotplace
+db.getCollection('areas').remove({"area_name": "강남역"})
+
 
 . myenv/bin/activate
 

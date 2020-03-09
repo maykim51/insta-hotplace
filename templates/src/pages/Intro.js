@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './../containers/Header';
 import Search from './../containers/Search';
 
-class Intro extends Component {
-  render() {
-    var { query, onChange, inputClear, onClickSgt } = this.props;
+function Intro ({ query, onChange, inputClear, pushQueryToInput }) {
     return (
       <div className="intro">
         <Header blind="blind" />
@@ -21,7 +19,7 @@ class Intro extends Component {
               query={query}
               onChange={onChange}
               inputClear={inputClear}
-              onClickSgt={onClickSgt}
+              pushQueryToInput={pushQueryToInput}
             />
             <div className="home_ico"></div>
           </main>
@@ -29,6 +27,5 @@ class Intro extends Component {
       </div>
     );
   }
-}
 
 export default Intro;

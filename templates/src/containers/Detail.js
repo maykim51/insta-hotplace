@@ -1,50 +1,59 @@
 import React, { Component } from 'react';
 import { Loading, InstaBoxItem } from './../components/BoxItems';
-import { GetDetail, GetSearch, GetInsta } from './../services/GetData';
+import { GetSearch, } from './../services/GetData';
 
 class Detail extends Component {
-  fetchSearch = async (query, name) => {
-    console.log(this.state.detailInfo);
-    this.setState({ fetching: true });
-      const detailRequest = await Promise.all([
-        GetDetail(name),
-        GetInsta(query),
-        GetSearch(query)
-      ]);
-      const detailInfo = detailRequest[0].data;
-      const instaList = detailRequest[1].data;
-      // const searchList = detailRequest[2].data;
-
-      this.setState({
-        detailInfo: detailInfo[0],
-        // searchList,
-        instaList,
-        fetching: false,
-      });
-      console.log(this.state.detailInfo);
-    }
-
   constructor(props) {
     super(props);
+    this._isMounted = false;
     this.state = {
       fetching: false,
-      name: this.props.name,
-      detailInfo: [],
-      // searchList: [],
-      instaList: [],
+      hasError: false,
+      venueData: {
+        detail: { description : null, 
+                  url_naver_map: null },
+        name: null ,
+        num_of_posts: null ,
+        posts: [
+                  { hashtags:[],
+                  img_urls:[],
+                  key: null }
+        ]
+      },
+      itemsPerPage: 12,
+      loadPage: 1,
+      indexStart: 0,
+      data: null,
     };
   }
 
-  // render()다음 데이터를 호출한다
-  componentDidMount() {
-    console.log('이거;'+this.props.match.params.name)
-    console.log('이거;'+this.props.match.params.query)
-    const {query, name} = this.props.match.params;
-    this.fetchSearch(query, name);
-    // window.addEventListener('scroll', this.nextPage);
-  }
+  // Get Search Result Data
+  fetchSearch = async (keyword, name) => {
+    if (this._ismounted === true) {
+      this.setState({ fetching: true });
+      console.log('얍1');
+      try {
+        const searchRequest = await GetSearch(keyword);
+        const searchList = searchRequest.data.venues;
+        const index = searchList.findIndex(i => i.name === name);
+        var venueData = searchList[index];
+        this.setState({
+          venueData,
+          fetching: false,
+          
+        });
+      } catch (e) {
+        console.log(e);
+        this.setState({
+          fetching: false,
+          hasError: true,
+        });
+      } finally {
+        this.setState({ hasError: false });
+      }
+    }
+  };
 
-  // // 무한스크롤
   // nextPage = () => {
   //   var { scrollHeight, scrollTop, clientHeight } = document.documentElement;
   //   if (scrollHeight === scrollTop + clientHeight) {
@@ -53,12 +62,11 @@ class Detail extends Component {
   // };
 
 
-
   render() {
-
-    // 검색결과가 있으면 로드한 데이터를 12개씩 보여준다
-
-    var {detailInfo, fetching} = this.state;
+    var {venueData, fetching} = this.state;
+    var venueDetail = venueData.detail;
+    var venuePosts = venueData.posts;
+    // console.log(instaList.img_urls[0]);
     // var relatedBoxItems = this.state.searchList.map((searchList, i) => {
     //   return (
     //     <RelatedBoxItem
@@ -71,17 +79,19 @@ class Detail extends Component {
     //   );
     // });
 
-    var instaBoxItems = this.state.instaList.map((instaList, i) => {
+    var instaBoxItems = venuePosts.map((venuePosts, i) => {
+
+      var tags = venuePosts.hashtags.map((hashtags) => '#' + hashtags + ' ');
+      var img_urls = venuePosts.img_urls.map((img_urls) => 'url(' + img_urls + ')');
       return (
         <InstaBoxItem
-          backgroundImage={instaList.backgroundImage}
-          tags={instaList.desc}
+          img_urls={img_urls}
+          tags={tags}
           key={i}
-          // link={instaList.link}
+          link={venuePosts.key}
         />
       );
     });
-
     return (
       <div className="main_container fullwidth">
         <main className="main">
@@ -96,24 +106,40 @@ class Detail extends Component {
               <span className="blind">다음</span>
             </button>
           </div> */}
-          <h1 className="detail_title">{detailInfo.name}</h1>
+          <h1 className="detail_title">{venueData.name}</h1>
           <div className="deatil">
-            <div className="detail_map"></div>
+            <div className="detail_map" style={{ backgroundImage: `url(${venuePosts[0].img_urls[0]})` }}></div>
             <div className="detail_desc">
               <p className="detail_txt">
-              {detailInfo.desc}
+                {venueDetail.description}
               </p>
-              <a className="detail_map_link key_color" href="/#">
+              <a className="detail_map_link key_color" href={venueDetail.url_naver_map} target="_naver">
                 <p className="detail_txt map_ico">네이버 지도에서 보기</p>
               </a>
             </div>
           </div>
-          <h2 className="insta_count">인스타그램 검색결과 : {this.state.instaList.length}건</h2>
+          <h2 className="insta_count">인스타그램 검색결과 : {venuePosts.length}건</h2>
           <ul className="box_container">{instaBoxItems}</ul>
           <Loading blind={fetching ? '' : 'blind'} />
         </main>
       </div>
     );
+  }
+
+  componentDidMount() {
+    this._ismounted = true;
+    this.fetchSearch(this.props.match.params.query, this.props.match.params.name);
+    window.addEventListener('scroll', this.viewNextPage);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.match.params.query !== this.props.match.params.query) {
+      this.fetchSearch(this.props.match.params.query);
+    }
+  }
+
+  componentWillUnmount() {
+    this._ismounted = false;
   }
 }
 

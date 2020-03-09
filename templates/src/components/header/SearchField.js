@@ -1,12 +1,8 @@
 import React from 'react';
 import './header.css';
 
-function SearchField(props) {
-  var { query, onChange, onFocus, inputClear, onClick } = props;
-  var blind = 'blind';
-  if (query !== undefined && query.length > 0) {
-    blind = '';
-  }
+function SearchField({ query, onChange, onFocus, inputClear, onClick }) {
+
   return (
     <fieldset>
       <legend className="blind">검색</legend>
@@ -26,7 +22,7 @@ function SearchField(props) {
       </span>
       <button
         type="button"
-        className={ 'search_clear_btn ' + blind }
+        className={'search_clear_btn ' + (query !== undefined && query.length > 0 ? '' : 'blind')}
         onClick={inputClear}
       >
         <span className="blind">지우기</span>

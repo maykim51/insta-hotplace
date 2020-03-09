@@ -1,4 +1,3 @@
-# -- coding: utf-8 --
 from flask import Flask, render_template, jsonify, request, Response
 from flask_restful import Resource, Api, reqparse, abort
 from area_list import map_query_to_venue
@@ -7,7 +6,6 @@ from bson.json_util import dumps
 import json
 from collections import OrderedDict
 from functools import wraps
-
 
 
 app = Flask(__name__)

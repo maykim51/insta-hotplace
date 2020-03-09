@@ -63,7 +63,10 @@ mongoimport -d scc-hotplace -c areas --file areas.json --jsonArray
 mongoimport -d scc-hotplace -c venues --file venues.json --jsonArray
 
 
+
 # ubuntu 16.04 mongodb
+JUST GO TO https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+
 sudo systemctl stop mongod
 sudo systemctl restart mongod 
 
@@ -103,3 +106,18 @@ ps -ef | grep 'python'
 kill -9 [pid값]
 
 
+# update keys 
+mongoexport -d scc-hotplace -c areas -o areas.json --jsonArray
+mongoexport -d scc-hotplace -c venues -o venues.json --jsonArray
+
+
+mongo
+show databases
+use scc-hotplace
+db.getCollection('areas').drop()
+db.getCollection('venues').drop()
+mongoimport -d scc-hotplace -c areas --file areas.json --jsonArray
+mongoimport -d scc-hotplace -c venues --file venues.json --jsonArray
+
+# encoding
+https://financedata.github.io/posts/faq_crawling_data_encoding.html

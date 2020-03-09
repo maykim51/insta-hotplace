@@ -9,7 +9,8 @@ from selenium import webdriver
 import time
 import os
 
-from venues.address_map import get_area_from_address
+from .address_map import get_area_from_address
+from bson.json_util import dumps
 
 area_list = [
         "가로수길", 
@@ -50,6 +51,7 @@ area_list = [
 ]
 
 def update_venue_list(file, area):
+    print("updating file:"+file)
     if area not in area_list:
         print(area + ": No such area. Could not insert the file into db.")
         return
@@ -70,16 +72,27 @@ def update_venue_list(file, area):
             venue_list.append((venue_name, address))
         venue_list = list(set(venue_list))
         for venue in venue_list:
-            right_area = get_area_from_address(venue[1])
-            if right_area is None:
+            # right_area = get_area_from_address(venue[1])
+            # if right_area is None:
+            #     right_area = area
+            # collection.insert_one({"area_name": right_area, "venue_name": venue[0], "address": venue[1]})
+
+            right_areas = get_area_from_address(venue[1])
+            if right_areas is None:
                 right_area = area
-            collection.insert_one({"area_name": right_area, "venue_name": venue[0], "address": venue[1]})
+                # print("updating file "+file+ " for area "+ right_area + "...")
+                collection.insert_one({"area_name": right_area, "venue_name": venue[0], "address": venue[1]})
+            else:
+                # print("updating file "+file+ " for area "+ str(right_areas) + "...")
+                for right_area in right_areas:                    
+                    collection.insert_one({"area_name": right_area, "venue_name": venue[0], "address": venue[1]})
 
 
 def search_venue(area_name, venue_name):
     data = {}
     data = collection.find({"area_name": area_name, "venue_name": venue_name}).limit(1)
-    if data.count() == 0:
+    num_of_data = collection.count_documents({"area_name": area_name, "venue_name": venue_name})
+    if num_of_data == 0:
         return None
     else:
         for doc in data:
@@ -145,7 +158,8 @@ def get_venue_detail(area_name, venue_name):
 
     # print("searching venue name {}".format(venue_name))
     data = db["venues"].find({"area_name": area_name, "venue_name": venue_name},{"_id":0}).limit(1)
-    if data.count() == 0:
+    num_of_data = db["venues"].count_documents({"area_name": area_name, "venue_name": venue_name})
+    if num_of_data == 0:
         data = {
             "venue_name": venue_name,
             "area_name": area_name,
@@ -160,6 +174,25 @@ def get_venue_detail(area_name, venue_name):
             return doc
 
 
+def update_venue_detail_all():
+    for area in area_list:
+        
+        data = db["areas"].find({"area_name":area},{"venues":1, "_id":0})
+        num_of_data = int(db["areas"].count_documents({"area_name":area}))
+        if  num_of_data is not 0:
+        # if data.count() != 0:
+            data = dumps(data, ensure_ascii=False)
+            data = json.loads(data)
+            venue_list = []
+            for item in data:
+                for venue in item["venues"]:
+                    venue_list.append(venue["name"])
+            
+            for venue in venue_list:
+                get_venue_detail(area, venue)
+        print("Update finished for area: "+area)
+           
+    
 
 if __name__ == "__main__":
     ## updated lists
@@ -170,9 +203,17 @@ if __name__ == "__main__":
     # update_venue_list("seongdonggu.json", "성수")
     # update_venue_list("seochogu.json", "강남역")
     # update_venue_list("yongsangu.json", "경리단길")
+    # update_venue_list("gwangjingu.json", "건대")
+    # update_venue_list("junggu.json", "을지로")
+    # update_venue_list("yeongdeungpogu.json", "여의도")
+    # update_venue_list("gwanakgu.json", "샤로수길")
+    # update_venue_list("songpagu.json", "잠실")
+
+
 
     
 
     # search_venue("강남역", "티엔티엔티엔")
     # get_venue_detail("성수", "도치피자")
     
+    update_venue_detail_all()

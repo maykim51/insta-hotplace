@@ -76,12 +76,14 @@ def sort_posts_per_area(area_name):
     temp_list = find_posts(sorted_data)
     sorted_data = find_venue_detail(sorted_data)
 
-    # db["areas"].insert_one({"area_name":area_name, "venues": sorted_data})
+
     db["areas"].insert_one({"area_name":area_name, "venues": temp_list})
 
 
 def update_posts_per_area(area_name):
     #drop the collection before running it.
+    print("Update posts for area "+area_name+"!!!")
+    
     tag_list = get_tags_per_area(area_name)
     if tag_list is None:
         print("Could not update posts for area {}".format(area_name))
@@ -89,7 +91,7 @@ def update_posts_per_area(area_name):
     
     for tag in tag_list:
         print("start crawling for tag {}".format(tag))
-        output(get_posts_by_hashtag(tag, 12, False), tag)
+        output(get_posts_by_hashtag(tag, 20, False), tag)
     
     sort_posts_per_area(area_name)
     print("Update completed for area {}!".format(area_name))
@@ -100,8 +102,12 @@ def update_all_area():
     #drop collections posts, and area before running it.
     for area in area_list:
         # TEMPORARY
-        if area is not "가로수길":
-            update_posts_per_area(area)
+        temp = ["가로수길", "강남역", "청담동", "경리단길", "성수", "홍대"]
+        if area not in temp :
+            try:
+                update_posts_per_area(area)
+            except:
+                print("failed to update" + area)
 
 
 if __name__ == "__main__":
